@@ -1,0 +1,14 @@
+## .NET
+bin/
+obj/
+
+## QuickFIX/N runtime
+store/
+log/
+
+## Visual Studio
+.vs/
+
+## User-specific
+*.user
+*.suo
