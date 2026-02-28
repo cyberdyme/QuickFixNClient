@@ -4,17 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build & Run
 
-Each project is built/run independently from its own directory:
-
 ```bash
-# Acceptor (server)
-cd FixAcceptorServer && dotnet build && dotnet run
-
-# Initiator (client) — start after the acceptor is listening
-cd FixInitiatorClient && dotnet build && dotnet run
+dotnet build                # build both projects from the repo root
+powershell -ExecutionPolicy Bypass -File run.ps1   # clean, build, and run both end-to-end
 ```
 
-Start the acceptor first, then the client. There are no tests, linting, or CI configured.
+To run individually (start the acceptor first):
+
+```bash
+cd FixAcceptorServer && dotnet run
+cd FixInitiatorClient && dotnet run
+```
+
+There are no tests, linting, or CI configured.
 
 ## What This Is
 
@@ -42,6 +44,8 @@ Both projects follow the same two-file pattern:
 - `FixAcceptorServer/server.cfg` — Acceptor session config (`SenderCompID=SERVER`, `TargetCompID=CLIENT`, `SocketAcceptPort=5001`)
 - `FixInitiatorClient/client.cfg` — Initiator session config (`SenderCompID=CLIENT`, `TargetCompID=SERVER`, connects to `127.0.0.1:5001`)
 - `*/FIX44.xml` — FIX 4.4 data dictionary (copied to output on build, same file in both projects)
+- `QuickFixNClient.sln` — Root solution file containing both projects
+- `run.ps1` — PowerShell script that cleans state, builds, and runs both projects in sequence
 - `DataDictionaries/` — Reference collection of FIX data dictionaries (FIX 4.0 through 5.0 SP2), not used by the build
 
 ## QuickFIX/N Conventions
