@@ -10,7 +10,13 @@ The client connects to the server on `127.0.0.1:5001`, sends a `NewOrderSingle` 
 
 ## Quick Start
 
-Start the acceptor first, then the client in a separate terminal:
+Run both projects with a single command (cleans state, builds, runs server then client):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File run.ps1
+```
+
+Or start them manually in two terminals:
 
 ```bash
 # Terminal 1 — Server
